@@ -11,7 +11,14 @@ function form() {
 
     const submit = (e)=>{
         e.preventDefault()
-        
+        const formData = new FormData();
+        formData.append('Name', name);
+        formData.append('location', location);
+        formData.append('price', price);
+        formData.append('working_days', workingdays);
+        formData.append('timings', timings);
+        formData.append('file', file);
+        // formData.append('Message', cityName);
     }
   return (
     <>
