@@ -28,7 +28,7 @@ function Form() {
 
         console.log(name,location,price,timings,Fees)
         // console.log(image1)
-        axios.post('http://localhost:8002/send',formData, {
+        axios.post('https://server-5a5x.onrender.com/send',formData, {
             
             headers: {
                 'Content-Type': 'multipart/form-data',
