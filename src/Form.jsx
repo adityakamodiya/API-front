@@ -26,7 +26,7 @@ function Form() {
         formData.append('image3', image3);
 
 
-        console.log(name,location,price,timings,Fees)
+        // console.log(name,location,price,timings,Fees)
         // console.log(image1)
         axios.post('https://server-5a5x.onrender.com/send',formData, {
             
