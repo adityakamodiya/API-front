@@ -4,11 +4,13 @@ import axios from 'axios';
 import './form.css';
 
 function Form() {
-    const [name, setName] = useState('');
+    const [name, setName] = useState ('');
     const [location, setLocation] = useState('');
     const [des, setdes] = useState('');
-    const [Fees, setFees] = useState('');
-    const [timings, setTimings] = useState('');
+    const [adultFees, setadultFees] = useState('');
+    const [childFees, setchildFees] = useState('');
+    const [starttime, setstarttime] = useState('');
+    const [endtime, setendtime] = useState('');
     const [image1, setimage1] = useState('');
     const [image2, setImage2] = useState('');
     const [image3, setImage3] = useState('');
@@ -18,15 +20,18 @@ function Form() {
         const formData = new FormData();
         formData.append('name', name);
         formData.append('location', location);
-        formData.append('descripition', des);
-        formData.append('Fees', Fees);
-        formData.append('timings', timings);
+        formData.append('description', des);
+        formData.append('adultFees', adultFees);
+        formData.append('childFees', childFees);
+        formData.append('starttime', starttime);
+        formData.append('endtime', endtime);
         formData.append('image1', image1);
         formData.append('image2', image2);
         formData.append('image3', image3);
 
 
         // console.log(name,location,price,timings,Fees)
+        // https://server-5a5x.onrender.com
         // console.log(image1)
         axios.post('https://server-5a5x.onrender.com/send',formData, {
             
@@ -53,12 +58,14 @@ function Form() {
                 <input type="text" placeholder='name' value={name} onChange={(e) => setName(e.target.value)} />
                 <textarea value={location} placeholder='location' onChange={(e) => setLocation(e.target.value)}></textarea>
                 <input type="text" value={des} placeholder='descripition' onChange={(e) => setdes(e.target.value)} />
-                <input type="text" value={Fees} placeholder='feessss' onChange={(e) => setFees(e.target.value)} />
-                <input type="text" value={timings} placeholder='timings' onChange={(e) => setTimings(e.target.value)} />
-                <input  className='file' type="file" onChange={(e) => {setimage1(e.target.files[0])}} />
+                <input type="number" name="adultfees" placeholder="adult entry fees" id="adultfees" value={adultFees} onChange={(e) => setadultFees(e.target.value)}   />
+        <input type="number" name="childfees" placeholder="child entry fees" id="childfees"value={childFees} onChange={(e) => setchildFees(e.target.value)} />
+                <input type="time" name="starttime" placeholder="start time" id="starttime"value={starttime} onChange={(e) => setstarttime(e.target.value)}  />
+                <input type="time" name="endtime" placeholder="end time" id="endtime" value={endtime} onChange={(e) => setendtime(e.target.value)} />             
+                   <input  className='file' type="file" onChange={(e) => {setimage1(e.target.files[0])}} />
                 <input type="file" onChange={(e) => setImage2(e.target.files[0])} />
                 <input type="file" onChange={(e) => setImage3(e.target.files[0])} />
-                <button type='submit' >submit</button>
+                <button type='submit' onClick={(e)=>{disable(e)}}>submit</button>
             </form>
         </div>
     );
