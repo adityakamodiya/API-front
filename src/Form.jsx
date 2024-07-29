@@ -49,7 +49,7 @@ function Form() {
         });
     };
     function disable(e){
-        e.target.disabled = true;
+        // e.target.disabled = true;
     }
 
     return (
