@@ -49,7 +49,7 @@ function Form() {
         });
     };
     function disable(e){
-        e.target.style.color = green;
+        e.target.style.color = "green";
     }
 
     return (
