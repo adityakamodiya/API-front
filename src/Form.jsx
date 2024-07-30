@@ -49,26 +49,30 @@ function Form() {
         });
     };
     function disable(e){
-        e.target.disabled = true;
+        e.target.color = 'brown'
+        // e.target.disabled = true;
     }
 
-    return (
+    return (<>
         <div id="wrapper">  
             <form onSubmit={submit}>
-                <input type="text" placeholder='name' value={name} onChange={(e) => setName(e.target.value)} />
-                <textarea value={location} placeholder='location' onChange={(e) => setLocation(e.target.value)}></textarea>
-                <input type="text" value={des} placeholder='descripition' onChange={(e) => setdes(e.target.value)} />
-                <input type="number" name="adultfees" placeholder="adult entry fees" id="adultfees" value={adultFees} onChange={(e) => setadultFees(e.target.value)}   />
-        <input type="number" name="childfees" placeholder="child entry fees" id="childfees"value={childFees} onChange={(e) => setchildFees(e.target.value)} />
-                <input type="time" name="starttime" placeholder="start time" id="starttime"value={starttime} onChange={(e) => setstarttime(e.target.value)}  />
-                <input type="time" name="endtime" placeholder="end time" id="endtime" value={endtime} onChange={(e) => setendtime(e.target.value)} />             
-                   <input  className='file' type="file" onChange={(e) => {setimage1(e.target.files[0])}} />
-                <input type="file" onChange={(e) => setImage2(e.target.files[0])} />
-                <input type="file" onChange={(e) => setImage3(e.target.files[0])} />
-                <button type='submit' onClick={(e)=>{disable(e)}}>submit</button>
-                <a href="../">go to results</a>
+            <a href="#">go to results</a>   
+                <input type="text" required placeholder='name' value={name} onChange={(e) => setName(e.target.value)} />
+                <textarea value={location} required placeholder='location' onChange={(e) => setLocation(e.target.value)}></textarea>
+                <input type="text" value={des} required placeholder='descripition' onChange={(e) => setdes(e.target.value)} />
+                <input type="number" name="adultfees" required placeholder="adult entry fees" id="adultfees" value={adultFees} onChange={(e) => setadultFees(e.target.value)}   />
+        <input type="number" name="childfees"required placeholder="child entry fees" id="childfees"value={childFees} onChange={(e) => setchildFees(e.target.value)} />
+                <input type="time" name="starttime"required placeholder="start time" id="starttime"value={starttime} onChange={(e) => setstarttime(e.target.value)}  />
+                <input type="time" name="endtime" required placeholder="end time" id="endtime" value={endtime} onChange={(e) => setendtime(e.target.value)} />             
+                   <input  className='file'required type="file" onChange={(e) => {setimage1(e.target.files[0])}} />
+                <input type="file"required onChange={(e) => setImage2(e.target.files[0])} />
+                <input type="file"required onChange={(e) => setImage3(e.target.files[0])} />
+                <button type='submit'required onClick={(e)=>{disable(e)}}>submit</button>
             </form>
+            
         </div>
+                
+                </>
     );
     }
     
