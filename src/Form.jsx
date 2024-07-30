@@ -66,6 +66,7 @@ function Form() {
                 <input type="file" onChange={(e) => setImage2(e.target.files[0])} />
                 <input type="file" onChange={(e) => setImage3(e.target.files[0])} />
                 <button type='submit' onClick={(e)=>{disable(e)}}>submit</button>
+                <a href="../">go to results</a>
             </form>
         </div>
     );
