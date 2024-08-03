@@ -48,10 +48,7 @@ function Form() {
             console.error("There was an error uploading the files!", error);
         });
     };
-    function disable(e){
-        e.target.color = 'brown'
-        // e.target.disabled = true;
-    }
+    
 
     return (<>
         <div id="wrapper">  
@@ -67,7 +64,7 @@ function Form() {
                    <input  className='file'required type="file" onChange={(e) => {setimage1(e.target.files[0])}} />
                 <input type="file"required onChange={(e) => setImage2(e.target.files[0])} />
                 <input type="file"required onChange={(e) => setImage3(e.target.files[0])} />
-                <button type='submit'required onClick={(e)=>{disable(e)}}>submit</button>
+                <button type='submit'required >submit</button>
             </form>
             
         </div>
