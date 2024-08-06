@@ -54,6 +54,7 @@ function Form() {
         <div id="wrapper">  
             <form onSubmit={submit}>
             {/* <a href="#">go to results</a>    */}
+            <h1>Add your favourate waterpark </h1>
                 <input type="text" required placeholder='resort name' value={name} onChange={(e) => setName(e.target.value)} />
                 <textarea value={location} required placeholder='location' onChange={(e) => setLocation(e.target.value)}></textarea>
                 <input type="text" value={des} required placeholder='descripition' onChange={(e) => setdes(e.target.value)} />
