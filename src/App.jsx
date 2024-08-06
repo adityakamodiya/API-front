@@ -1,28 +1,30 @@
-import React, { useState } from 'react'
-import axios from 'axios';
-
+import React, { useEffect, useState } from 'react'
+import {BrowserRouter,Routes,Route, Navigate} from 'react-router-dom'
+import Form from './Form'
+import GetAll from './GetAll'
+import { auth } from './Firebase'
+import Register from './Register'
+import Login from './Login'
 function App() {
-  const [file,setfile] = useState('')
-  const upload = ()=>{
-    // console.log(file)
-const formdata = new FormData();
-formdata.append('filee',file)
-axios.post('http://localhost:8002/upload',formdata,{
-  headers: {
-    'Content-Type': 'multipart/form-data',
-  },
-})
-.then((res)=>{
-  console.log(res);
-})
-    
-
-  }
+const [ user,setuser] = useState('')
+useEffect(()=>{
+  auth.onAuthStateChanged((user)=>{
+    setuser(user)
+    // console.log(user.email)
+    localStorage.setItem('Uemail',user.email)
+    // console.log(localStorage.getItem('Uemail'))
+  })
+},[])
   return (
-    <div>
-      <input type="file" onChange={(e)=>{setfile(e.target.files[0])}} />
-      <button type='button' onClick={upload}>upload</button>
-    </div>
+    <>
+    <BrowserRouter>
+    <Routes>
+      <Route path='/'element={<Login/>}></Route>
+      <Route path='/form'element={ (localStorage.getItem('Uemail'))?<Form/>: <Navigate to='/' />}></Route>
+      <Route path='/Register user'element={<Register/>}></Route>
+    </Routes>
+    </BrowserRouter>
+    </>
   )
 }
 

@@ -33,7 +33,7 @@ input{
     margin : .5% 0 ;
     padding: 1.5% 4%;
     width: 50%;
-    color: wheat;
+    /* color: wheat; */
 }
 .timings {
     display: flex;

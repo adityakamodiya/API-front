@@ -1,9 +1,13 @@
 
 import React, { useState } from 'react';
 import axios from 'axios';
+import { auth,db } from './Firebase'
+import { doc,setDoc } from 'firebase/firestore'
 import './form.css';
+import { useNavigate } from 'react-router-dom';
 
 function Form() {
+    const navigate = useNavigate();
     const [name, setName] = useState ('');
     const [location, setLocation] = useState('');
     const [des, setdes] = useState('');
@@ -50,6 +54,17 @@ function Form() {
     };
     
 
+    const Logout = async()=>{
+        try{
+            await auth.signOut();
+        localStorage.removeItem('Uemail')
+            navigate('/')
+        }
+        catch(error){
+            console.log(error)
+        }
+    }
+
     return (<>
         <div id="wrapper">  
             <form onSubmit={submit}>
@@ -71,10 +86,11 @@ function Form() {
                 <input type="file"required onChange={(e) => setImage2(e.target.files[0])} />
                 <input type="file"required onChange={(e) => setImage3(e.target.files[0])} />
                 <button type='submit'required onClick={e=> setInterval(() => {
-                    
+                            
                     e.target.disabled = 'true'}, 2000)} >submit</button>
+                    
             </form>
-            
+            <button onClick={Logout}>Logout</button>
         </div>
                 
                 </>
