@@ -6,37 +6,38 @@ import { useNavigate,Link } from 'react-router-dom'
 
 function Login() {
     const navigate = useNavigate();
-    const[email,setemail] = useState('')
-    const[password,setpassword] = useState('')
-    const Loginuser =async (e)=>{
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+       
+    const onLogin = (e) => {
         e.preventDefault();
-        try{
-            await signInWithEmailAndPassword(auth,email,password);
-            console.log("user login seccessfully")
-            alert("user login seccessfully")
-            navigate('/form')
-            
-        }
-        catch(er){
-            console.log('error')
-            alert('invalid')
-        }
-
+        signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+            // Signed in
+            const user = userCredential.user;
+            navigate("/form")
+            console.log(user);
+        })
+        .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            console.log(errorCode, errorMessage)
+        });
+       
     }
-
     
   return (
     <>
         <div id="wrapper">
             
-    <form action="" style={{height:'80%'}}  onSubmit={Loginuser}>
+    <form action="" style={{height:'80%'}}  onSubmit={onLogin}>
         <h1>Login yourself!!!</h1>
         {/* <input type="text" placeholder='name' onChange={e=>{setname(e.target.value)}} /> */}
-        <input type="email" placeholder='Email'onChange={e=>{setemail(e.target.value)}} />
-        <input type="password" placeholder='password'onChange={e=>{setpassword(e.target.value)}} />
+        <input type="email" placeholder='Email'onChange={e=>{setEmail(e.target.value)}} />
+        <input type="password" placeholder='password'onChange={e=>{setPassword(e.target.value)}} />
         <button type='submit'>Log in</button>
 
-        <Link to='/Register user'>Register yourself</Link> 
+        <Link to='/Signup'>Register yourself</Link> 
     </form> 
     </div>
     </>

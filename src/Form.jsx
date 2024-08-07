@@ -1,5 +1,5 @@
-
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { onAuthStateChanged } from "firebase/auth";
 import axios from 'axios';
 import { auth,db } from './Firebase'
 import { doc,setDoc } from 'firebase/firestore'
@@ -7,7 +7,33 @@ import './form.css';
 import { useNavigate } from 'react-router-dom';
 
 function Form() {
+    const[ud,setud] = useState('')
+
+
     const navigate = useNavigate();
+    useEffect(()=>{
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+              // User is signed in, see docs for a list of available properties
+              // https://firebase.google.com/docs/reference/js/firebase.User
+              const uid = user.uid;
+              setud(user.uid)
+              // ...
+              console.log("uid", uid)
+            } else {
+              // User is signed out
+              // ...
+              console.log("user is logged out")
+              navigate('/')
+            }
+          });
+         
+    }, [])
+
+    // const navigate = useNavigate();
+ 
+
+
     const [name, setName] = useState ('');
     const [location, setLocation] = useState('');
     const [des, setdes] = useState('');
@@ -57,15 +83,16 @@ function Form() {
     const Logout = async()=>{
         try{
             await auth.signOut();
-        localStorage.removeItem('Uemail')
+        // localStorage.removeItem('Uemail')
             navigate('/')
         }
         catch(error){
             console.log(error)
         }
     }
-
+            
     return (<>
+    { (ud)?
         <div id="wrapper">  
             <form onSubmit={submit}>
             {/* <a href="#">go to results</a>    */}
@@ -83,16 +110,17 @@ function Form() {
                <label htmlFor="">End time</label>   <input type="time" name="endtime" required placeholder="end time" id="endtime" value={endtime} onChange={(e) => setendtime(e.target.value)} />    
                </div>
                    <input  className='file'required type="file" onChange={(e) => {setimage1(e.target.files[0])}} />
-                <input type="file"required onChange={(e) => setImage2(e.target.files[0])} />
-                <input type="file"required onChange={(e) => setImage3(e.target.files[0])} />
-                <button type='submit'required onClick={e=> setInterval(() => {
+                <input className='file' type="file"required onChange={(e) => setImage2(e.target.files[0])} />
+                <input className='file' type="file"required onChange={(e) => setImage3(e.target.files[0])} />
+                <button  type='submit'required onClick={e=> setInterval(() => {
                             
                     e.target.disabled = 'true'}, 2000)} >submit</button>
                     
             </form>
             <button onClick={Logout}>Logout</button>
         </div>
-                
+        :navigate('/') 
+  } 
                 </>
     );
     }
