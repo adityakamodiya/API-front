@@ -80,7 +80,7 @@ function Form() {
     const Logout = async()=>{
         try{
             await auth.signOut();
-        localStorage.removeItem('uid')
+        // localStorage.removeItem('uid')
         window.location.reload()    
         navigate('/')
 
@@ -91,7 +91,7 @@ function Form() {
     }
             
     return (<>
-    { (ud && localStorage.getItem('uid'))?
+    { (ud )?
         <div id="wrapper">  
             <form onSubmit={submit}>
             {/* <a href="#">go to results</a>    */}

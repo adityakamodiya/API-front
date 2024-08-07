@@ -28,7 +28,7 @@ function App() {
       <div>
         <section>                              
           <Routes>
-          <Route path="/form" element={(ud && localStorage.getItem('uid')) ? <Form /> : <Navigate to="/" />} />
+          <Route path="/form" element={(ud) ? <Form /> : <Navigate to="/" />} />
             <Route path="/signup" element={<Register />} />
             <Route 
               path="/" 
