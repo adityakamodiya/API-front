@@ -43,6 +43,7 @@ function Form() {
     const [image3, setImage3] = useState('');
 
     const submit = (e) => {
+        console.log('running')
         e.preventDefault();
         const formData = new FormData();
         formData.append('name', name);
