@@ -15,6 +15,7 @@ function Form() {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
           if (user) {
             setud(user.uid);
+
             console.log("uid", user.uid);
           } else {
             console.log("user is logged out");
@@ -79,7 +80,7 @@ function Form() {
     const Logout = async()=>{
         try{
             await auth.signOut();
-        // localStorage.removeItem('Uemail')
+        localStorage.removeItem('uid')
         window.location.reload()    
         navigate('/')
 
@@ -90,7 +91,7 @@ function Form() {
     }
             
     return (<>
-    { (ud)?
+    { (ud && localStorage.getItem('uid'))?
         <div id="wrapper">  
             <form onSubmit={submit}>
             {/* <a href="#">go to results</a>    */}

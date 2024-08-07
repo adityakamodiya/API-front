@@ -36,6 +36,7 @@ function Login() {
         .then((userCredential) => {
             // Signed in
             const user = userCredential.user;
+            localStorage.setItem("uid",user.uid)
             navigate("/form")
             console.log(user);
         })
