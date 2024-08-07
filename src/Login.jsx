@@ -1,6 +1,6 @@
 import React from 'react'
-import { signInWithEmailAndPassword } from 'firebase/auth'
-import { useState } from 'react'
+import { signInWithEmailAndPassword,onAuthStateChanged } from 'firebase/auth'
+import { useState,useEffect } from 'react'
 import { auth } from './Firebase'
 import { useNavigate,Link } from 'react-router-dom'
 
@@ -8,7 +8,28 @@ function Login() {
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-       
+    const[ud,setud] = useState('')
+
+    // useEffect(()=>{
+    //     onAuthStateChanged(auth, (user) => {
+    //         if (user) {
+    //           // User is signed in, see docs for a list of available properties
+    //           // https://firebase.google.com/docs/reference/js/firebase.User
+    //           const uid = user.uid;
+    //           setud(user.uid)
+    //           // ...
+    //           console.log("uid", uid)
+    //         } else {
+    //           // User is signed out
+    //           // ...
+    //           console.log("user is logged out")
+    //           navigate('/')
+    //         }
+    //       });
+         
+    // }, [])
+        
+
     const onLogin = (e) => {
         e.preventDefault();
         signInWithEmailAndPassword(auth, email, password)

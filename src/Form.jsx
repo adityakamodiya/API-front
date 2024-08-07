@@ -7,22 +7,19 @@ import './form.css';
 import { useNavigate } from 'react-router-dom';
 
 function Form() {
-    const[ud,setud] = useState('')
-
-
     const navigate = useNavigate();
+    
+    
+    const[ud,setud] = useState('')
     useEffect(()=>{
         onAuthStateChanged(auth, (user) => {
             if (user) {
-              // User is signed in, see docs for a list of available properties
-              // https://firebase.google.com/docs/reference/js/firebase.User
               const uid = user.uid;
               setud(user.uid)
-              // ...
+              
               console.log("uid", uid)
             } else {
-              // User is signed out
-              // ...
+            
               console.log("user is logged out")
               navigate('/')
             }
@@ -84,7 +81,9 @@ function Form() {
         try{
             await auth.signOut();
         // localStorage.removeItem('Uemail')
-            navigate('/')
+        window.location.reload()    
+        navigate('/')
+
         }
         catch(error){
             console.log(error)
