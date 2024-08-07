@@ -7,12 +7,10 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "postbuild": "cp serve.json build/",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview",
-    "start": "serve -s build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-
+    "preview": "vite preview"
+   
   },
 
   
