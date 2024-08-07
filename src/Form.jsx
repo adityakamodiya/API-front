@@ -11,21 +11,19 @@ function Form() {
     
     
     const[ud,setud] = useState('')
-    useEffect(()=>{
-        onAuthStateChanged(auth, (user) => {
-            if (user) {
-              const uid = user.uid;
-              setud(user.uid)
-              
-              console.log("uid", uid)
-            } else {
-            
-              console.log("user is logged out")
-              navigate('/')
-            }
-          });
-         
-    }, [])
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
+          if (user) {
+            setud(user.uid);
+            console.log("uid", user.uid);
+          } else {
+            console.log("user is logged out");
+            navigate('/');
+          }
+        });
+    
+        return () => unsubscribe(); // Clean up the subscription
+      }, [navigate]);
 
     // const navigate = useNavigate();
  
