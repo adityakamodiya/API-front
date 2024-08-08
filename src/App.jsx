@@ -24,14 +24,14 @@ function App() {
   }, []);
 
   return (
-    <Router>
-    <Routes>
-      <Route path="/" element={<Login />} />
-      <Route path="/form" element={<Form />} />
-      <Route path="/signup" element={<Register />} />
-      <Route path="*" element={<Navigate to="/" />} /> {/* Redirect to home for undefined routes */}
-    </Routes>
-  </Router>
+  <Router>
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/form" element={<Form />} />
+        <Route path="/signup" element={<Register />} />
+        <Route path="*" element={<Navigate to="/" />} /> {/* Redirect to home for undefined routes */}
+      </Routes>
+    </Router>
   );
 }
 

@@ -17,7 +17,5 @@ services:
         dest: /logo512.png
       - src: /robots.txt
         dest: /robots.txt
-      - src: /index.html
-        dest: /index.html
       - src: /*
         dest: /index.html
