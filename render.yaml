@@ -3,19 +3,7 @@ services:
     name: client
     env: static
     buildCommand: npm run build
-    startCommand: npm run start
+    startCommand: npx serve -s dist  # Use npx to ensure `serve` runs correctly
     routes:
-      - src: /static/*
-        dest: /static/*
-      - src: /favicon.ico
-        dest: /favicon.ico
-      - src: /manifest.json
-        dest: /manifest.json
-      - src: /logo192.png
-        dest: /logo192.png
-      - src: /logo512.png
-        dest: /logo512.png
-      - src: /robots.txt
-        dest: /robots.txt
-      - src: /*
-        dest: /index.html
+      - src: /**
+        dest: /index.html  # Redirect all requests to index.html for SPA routing
