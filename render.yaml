@@ -3,7 +3,7 @@ services:
     name: client
     env: static
     buildCommand: npm run build
-    startCommand: npx serve -s dist  # Use npx to ensure `serve` runs correctly
+    startCommand: serve -s dist
     routes:
       - src: /**
-        dest: /index.html  # Redirect all requests to index.html for SPA routing
+        dest: /index.html
