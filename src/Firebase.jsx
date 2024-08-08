@@ -25,3 +25,4 @@ export default app;
 
 export const db = getFirestore(app); 
 const analytics = getAnalytics(app);
+auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL);

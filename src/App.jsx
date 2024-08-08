@@ -32,7 +32,7 @@ function App() {
             <Route path="/signup" element={<Register />} />
             <Route 
               path="/" 
-              element={(ud && localStorage.getItem('uid')) ? <Navigate to="/form" /> : <Login />} 
+              element={(ud) ? <Navigate to="/form" /> : <Login />} 
             />
           </Routes>
         </section>
