@@ -90,8 +90,8 @@ function Form() {
         }
     }
             
-    return (<>
-    { (ud )?
+    return (<>   
+    {/* { (ud )? */}
         <div id="wrapper">  
             <form onSubmit={submit}>
             {/* <a href="#">go to results</a>    */}
@@ -118,8 +118,8 @@ function Form() {
             </form>
             <button onClick={Logout}>Logout</button>
         </div>
-        :navigate('/') 
-  } 
+        {/* :navigate('/')  */}
+  {/* }  */}
                 </>
     );
     }
