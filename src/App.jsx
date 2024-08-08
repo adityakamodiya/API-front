@@ -25,19 +25,13 @@ function App() {
 
   return (
     <Router>
-      <div>
-        <section>                              
-          <Routes>
-          <Route path="/form" element={(ud) ? <Form /> : <Navigate to="/" />} />
-            <Route path="/signup" element={<Register />} />
-            <Route 
-              path="/" 
-              element={(ud) ? <Navigate to="/form" /> : <Login />} 
-            />
-          </Routes>
-        </section>
-      </div>
-    </Router>
+    <Routes>
+      <Route path="/" element={<Login />} />
+      <Route path="/form" element={<Form />} />
+      <Route path="/signup" element={<Register />} />
+      <Route path="*" element={<Navigate to="/" />} /> {/* Redirect to home for undefined routes */}
+    </Routes>
+  </Router>
   );
 }
 
