@@ -22,10 +22,10 @@ const db = getFirestore(app);
 const analytics = getAnalytics(app);
 
 // Set persistence for Firebase Auth
-setPersistence(auth, browserLocalPersistence)
-  .catch((error) => {
-    console.error("Error setting persistence:", error);
-  });
+// setPersistence(auth, browserLocalPersistence)
+//   .catch((error) => {
+//     console.error("Error setting persistence:", error);
+//   });
 
 export { auth, db };
 export default app;

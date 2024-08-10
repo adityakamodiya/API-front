@@ -6,10 +6,5 @@ export default defineConfig({
   build: {
     outDir: 'dist',
   },
-  server: {
-    historyApiFallback: true,
-  },
-  preview: {
-    port: 3000,
-  },
+  
 });

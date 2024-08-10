@@ -26,10 +26,10 @@ function App() {
   return (
   <Router>
       <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/form" element={<Form />} />
+        <Route path="/" element={ud?<Navigate to="/form" />  :<Login />} />
+        <Route path="/form" element={ud?<Navigate to="/form" />  :<Login />} />
         <Route path="/signup" element={<Register />} />
-        <Route path="*" element={<Navigate to="/" />} /> {/* Redirect to home for undefined routes */}
+        <Route path="/*" element={<Navigate to="/" />} /> {/* Redirect to home for undefined routes */}
       </Routes>
     </Router>
   );
