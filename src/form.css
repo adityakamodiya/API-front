@@ -6,10 +6,26 @@
 #wrapper {
     height: 100vh;
     display: flex;
+    flex-direction: column;
     background-color: #0303032e;
     justify-content: center;
     align-items: center;
-}form {
+}
+
+.logout  {
+padding-right:2% ;
+    width: 100%;
+    text-align: end;
+}
+.logout button{
+    border: 5%;
+    font-size: 22px;
+    padding: 1% 3%;
+    cursor: pointer;
+
+
+}
+form {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -53,7 +69,7 @@ textarea{
     width: 50%;
     text-align: justify;
 }
-button{
+ form button{
     padding: 2% 6%;
     /* color: black; */
     /* color: wheat; */

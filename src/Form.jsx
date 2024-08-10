@@ -1,36 +1,36 @@
 import React, { useState, useEffect } from 'react';
 import { onAuthStateChanged } from "firebase/auth";
 import axios from 'axios';
-import { auth,db } from './Firebase'
-import { doc,setDoc } from 'firebase/firestore'
+import { auth, db } from './Firebase'
+import { doc, setDoc } from 'firebase/firestore'
 import './form.css';
 import { useNavigate } from 'react-router-dom';
 
 function Form() {
     const navigate = useNavigate();
-    
-    
-    const[ud,setud] = useState('')
+
+
+    const [ud, setud] = useState('')
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
-          if (user) {
-            setud(user.uid);
+            if (user) {
+                setud(user.uid);
 
-            console.log("uid", user.uid);
-          } else {
-            console.log("user is logged out");
-            navigate('/');
-          }
+                console.log("uid", user.uid);
+            } else {
+                console.log("user is logged out");
+                navigate('/');
+            }
         });
-    
+
         return () => unsubscribe(); // Clean up the subscription
-      }, [navigate]);
+    }, [navigate]);
 
     // const navigate = useNavigate();
- 
 
 
-    const [name, setName] = useState ('');
+
+    const [name, setName] = useState('');
     const [location, setLocation] = useState('');
     const [des, setdes] = useState('');
     const [adultFees, setadultFees] = useState('');
@@ -60,68 +60,74 @@ function Form() {
         // console.log(name,location,price,timings,Fees)
         // https://server-5a5x.onrender.com
         // console.log(image1)
-        axios.post('https://server-5a5x.onrender.com/send',formData, {
-            
+        axios.post('https://server-5a5x.onrender.com/send', formData, {
+
             headers: {
                 'Content-Type': 'multipart/form-data',
             },
         })
-        .then((res) => {
-            console.log(res);
-            alert('data has been added  successfully!!!')
-            window.location.reload();
-        })
-        .catch((error) => {
-            console.error("There was an error uploading the files!", error);
-        });
+            .then((res) => {
+                console.log(res);
+                alert('data has been added  successfully!!!')
+                window.location.reload();
+            })
+            .catch((error) => {
+                console.error("There was an error uploading the files!", error);
+            });
     };
-    
 
-    const Logout = async()=>{
-        try{
+
+    const Logout = async () => {
+        try {
             await auth.signOut();
-        // localStorage.removeItem('uid')
-        window.location.reload()    
-        navigate('/')
+            // localStorage.removeItem('uid')
+            window.location.reload()
+            navigate('/')
 
         }
-        catch(error){
+        catch (error) {
             console.log(error)
         }
     }
-            
-    return (<>   
-    {/* { (ud )? */}
-        <div id="wrapper">  
+
+    return (<>
+
+        <div id="wrapper">
+            <div className="logout">
+                <button onClick={Logout}>Logout</button>
+            </div>
             <form onSubmit={submit}>
-            {/* <a href="#">go to results</a>    */}
-            <h1>Add your favourate waterpark </h1>
+
+                <h1>Add your favourite waterpark </h1>
                 <input type="text" required placeholder='resort name' value={name} onChange={(e) => setName(e.target.value)} />
                 <textarea value={location} required placeholder='location' onChange={(e) => setLocation(e.target.value)}></textarea>
                 <input type="text" value={des} required placeholder='descripition' onChange={(e) => setdes(e.target.value)} />
-                <input type="number" name="adultfees" required placeholder="adult entry fees" id="adultfees" value={adultFees} onChange={(e) => setadultFees(e.target.value)}   />
-        <input type="number" name="childfees"required placeholder="child entry fees" id="childfees"value={childFees} onChange={(e) => setchildFees(e.target.value)} />
+                <input type="number" name="adultfees" required placeholder="adult entry fees" id="adultfees" value={adultFees} onChange={(e) => setadultFees(e.target.value)} />
+                <input type="number" name="childfees" required placeholder="child entry fees" id="childfees" value={childFees} onChange={(e) => setchildFees(e.target.value)} />
 
-        <div className="timings">
-               <label htmlFor="">start time</label> <input type="time" name="starttime"required placeholder="start time" id="starttime"value={starttime} onChange={(e) => setstarttime(e.target.value)}  />
-               </div>
-               <div className="timings">
-               <label htmlFor="">End time</label>   <input type="time" name="endtime" required placeholder="end time" id="endtime" value={endtime} onChange={(e) => setendtime(e.target.value)} />    
-               </div>
-                   <input  className='file'required type="file" onChange={(e) => {setimage1(e.target.files[0])}} />
-                <input className='file' type="file"required onChange={(e) => setImage2(e.target.files[0])} />
-                <input className='file' type="file"required onChange={(e) => setImage3(e.target.files[0])} />
-                <button  type='submit'required onClick={e=> setInterval(() => {
-                            
-                    e.target.disabled = 'true'}, 2000)} >submit</button>
-                    
+                <div className="timings">
+                    <label htmlFor="">start time</label> <input type="time" name="starttime" required placeholder="start time" id="starttime" value={starttime} onChange={(e) => setstarttime(e.target.value)} />
+                </div>
+                <div className="timings">
+                    <label htmlFor="">End time</label>   <input type="time" name="endtime" required placeholder="end time" id="endtime" value={endtime} onChange={(e) => setendtime(e.target.value)} />
+                </div>
+                <input className='file' required type="file" onChange={(e) => { setimage1(e.target.files[0]) }} />
+                <input className='file' type="file" required onChange={(e) => setImage2(e.target.files[0])} />
+                <input className='file' type="file" required onChange={(e) => setImage3(e.target.files[0])} />
+                <button type='submit' required onClick={e => setInterval(() => {
+
+                    e.target.disabled = 'true'
+                    e.target.style.cursor  = 'none'
+
+                }, 2000)} >submit</button>
+
+
             </form>
-            <button onClick={Logout}>Logout</button>
+
         </div>
-        {/* :navigate('/')  */}
-  {/* }  */}
-                </>
+
+    </>
     );
-    }
-    
+}
+
 export default Form;
