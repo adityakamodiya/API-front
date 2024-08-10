@@ -1,12 +1,12 @@
 // Import the functions you need from the SDKs you need
 
 import { configDotenv } from "dotenv";
-configDotenv();
+
 import { initializeApp } from "firebase/app";
 import { getAuth, setPersistence, browserLocalPersistence } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
 import { getAnalytics } from 'firebase/analytics';
-
+configDotenv();
 // Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: process.env.apiKey,
@@ -15,8 +15,9 @@ const firebaseConfig = {
   storageBucket: process.env.storageBucket,
   messagingSenderId: process.env.messagingSenderId,
   appId: process.env.appId,
-  measurementId: process.env.measurementId
+  measurementId: process.env.measurementId,
 };
+console.log(firebaseConfig.apiKey);
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
