@@ -1,4 +1,7 @@
 // Import the functions you need from the SDKs you need
+
+import { configDotenv } from "dotenv";
+configDotenv();
 import { initializeApp } from "firebase/app";
 import { getAuth, setPersistence, browserLocalPersistence } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
@@ -6,13 +9,13 @@ import { getAnalytics } from 'firebase/analytics';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyBN8dneTw9pHaN9X05g_Z7SpXovB0-73b0",
-  authDomain: "apiform-b3bbc.firebaseapp.com",
-  projectId: "apiform-b3bbc",
-  storageBucket: "apiform-b3bbc.appspot.com",
-  messagingSenderId: "820659874752",
-  appId: "1:820659874752:web:3ee10e3e1887f8b5377625",
-  measurementId: "G-PG863ZZ27T"
+  apiKey: process.env.apiKey,
+  authDomain: process.env.authDomain,
+  projectId: process.env.projectId,
+  storageBucket: process.env.storageBucket,
+  messagingSenderId: process.env.messagingSenderId,
+  appId: process.env.appId,
+  measurementId: process.env.measurementId
 };
 
 // Initialize Firebase
